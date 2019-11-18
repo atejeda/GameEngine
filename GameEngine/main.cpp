@@ -1,15 +1,41 @@
-//
-//  main.cpp
-//  GameEngine
-//
-//  Created by Alexis Tejeda on 17-11-19.
-//  Copyright © 2019 Alexis Tejeda. All rights reserved.
-//
-
 #include <iostream>
 
+#define GLFW_DLL
+
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+using namespace std;
+
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+    GLFWwindow* window;
+    
+    // initialise the library
+    if (!glfwInit()) {
+        return -1;
+    }
+    
+    // create a windowed mode and its OpenGL context
+    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    
+    if (!window) {
+        glfwTerminate();
+        return -1;
+    }
+    
+    glfwMakeContextCurrent(window);
+    
+    while (!glfwWindowShouldClose(window)) {
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        // render opengl here
+        
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    
+    glfwTerminate();
+    
     return 0;
 }
